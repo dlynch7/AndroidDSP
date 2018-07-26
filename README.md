@@ -19,6 +19,8 @@ Components:
 - Android with USB-OTG capability
 
 ## Some audio effects building blocks
+* Function generator (sine, tri, saw, square, white noise). Desirable adjustable parameters for the first 4 functions are amplitude, bias, frequency, and phase delay.
+
 * Mix
 ```
 z[n] = ax[n] + by[n]
@@ -42,13 +44,28 @@ A number of other guitar effects are delay-based:
 - phaser
 - stereo widener
 
-Moreover, chorus, flanger, and phaser are all quite similar. Here are the equations for very basic implementations of each:
+Moreover, chorus, flanger, and phaser are all quite similar. They involve mixing the original signal with a delayed signal, where the delay time is determined by a low-frequency oscillator (LFO).
+
+Here are the equations for very basic implementations of each:
 * chorus:
 ```
-T[n] = Asin(2 &pi; f)
+T[n] = A + Bsin(2 pi f)
 y[n] = ax[n] + bx[n-T[n]]
 ```
+Typical chorus uses a delay varying from 40 ms to 60 ms, at a frequency around 0.25 Hz.
 
 * flanger:
+```
+T[n] = A + Bsin(2 pi f)
+y[n] = ax[n] + bx[n-T[n]]
+```
+Typical flanger uses a delay varying from 0 ms to 10 ms, at a frequency around 0.5 Hz.
 
 * phaser:
+```
+T[n] = A + Bsin(2 pi f)
+y[n] = ax[n] - bx[n-T[n]]
+```
+Note the sign difference! Phaser settings can be similar to flanger setting and chorus settings.
+
+In all three cases, the LFO doesn't have to be sinusoidal; it can also be a triangle wave, a square wave, or a sawtooth wave.
