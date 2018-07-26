@@ -69,3 +69,19 @@ y[n] = ax[n] - bx[n-T[n]]
 Note the sign difference! Phaser settings can be similar to flanger setting and chorus settings.
 
 In all three cases, the LFO doesn't have to be sinusoidal; it can also be a triangle wave, a square wave, or a sawtooth wave.
+
+## Tri-stereo chorus: the Holy Grail of guitar effects
+I'm especially keen on replicating the Tri-Stereo Chorus (TSC) effect. After a little digging, I came across this note on the TSC's architecture in a [forum post](http://www.hugeracksinc.com/forum/viewtopic.php?f=1&t=98200&start=15):
+
+```
+1) Three separate Analog Delay Lines (Left, Center and Right).
+
+2) Nine different Sinusoidal LFOs, three per channel.
+Two fixed (PRESET) and one variable (MANUAL).
+```
+
+Another forum member clarified:
+```
+THAT sound that you're looking for is based on Manual mode,
+so "simple" 3 delay line + one LFO per line.
+```
